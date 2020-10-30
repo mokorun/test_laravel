@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  web-server:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./docker/log/nginx:/var/log/nginx
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./docker/ssl:/etc/ssl
+      - ./:/var/www/html
+
+  php-fpm:
+    container_name: php
+    image: php:7.4-fpm
+    expose:
+      - 9000
+    volumes:
+#      - ./docker/php/php-fpm.d:/usr/local/etc/php-fpm.d
+      - ./docker/ssl:/etc/ssl
+      - ./:/var/www/html
