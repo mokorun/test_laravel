@@ -8,6 +8,13 @@
 <h2>
     Hello world from blade!!
 </h2>
-<p>{{date("Y/m/d H:i:s")}}</p>
+<h1>{{ $msg }}</h1>
+
+<ul>
+    @foreach ($books as $book)
+        <li>{{ $book->title }}</li>
+    @endforeach
+</ul>
+
 </body>
 </html>

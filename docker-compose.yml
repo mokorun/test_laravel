@@ -1,25 +1,51 @@
 version: "3"
 
 services:
-
   web-server:
     container_name: nginx
     image: nginx:latest
     ports:
       - "443:443"
       - "80:80"
+    environment:
+      TZ: "Asia/Taipei"
     volumes:
       - ./docker/log/nginx:/var/log/nginx
       - ./docker/nginx/conf:/etc/nginx/conf.d
       - ./docker/ssl:/etc/ssl
       - ./:/var/www/html
-
   php-fpm:
+    build: ./docker/php
     container_name: php
-    image: php:7.4-fpm
     expose:
       - 9000
     volumes:
-#      - ./docker/php/php-fpm.d:/usr/local/etc/php-fpm.d
       - ./docker/ssl:/etc/ssl
       - ./:/var/www/html
+
+#  php-fpm:
+#    container_name: php
+#    image: php:7.4-fpm
+#    expose:
+#      - 9000
+#    volumes:
+##      - ./docker/php/php-fpm.d:/usr/local/etc/php-fpm.d
+#      - ./docker/ssl:/etc/ssl
+#      - ./:/var/www/html
+
+  db:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    #    hostname: local.sfuto
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: root
+      TZ: "Asia/Taipei"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/conf.d/local.cnf:/etc/mysql/conf.d/local.cnf
+      - ./docker/log/mysql:/var/log/mysql
