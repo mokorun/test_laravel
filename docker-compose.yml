@@ -23,6 +23,12 @@ services:
       - ./docker/ssl:/etc/ssl
       - ./:/var/www/html
 
+#  node:
+#    image: node:latest
+#    container_name: node
+#    volumes:
+#      - ./docker/node/src:/src
+#
 #  php-fpm:
 #    container_name: php
 #    image: php:7.4-fpm
@@ -33,7 +39,7 @@ services:
 #      - ./docker/ssl:/etc/ssl
 #      - ./:/var/www/html
 
-  db:
+  mysql:
     container_name: mysql
     image: mysql:latest
     ports:

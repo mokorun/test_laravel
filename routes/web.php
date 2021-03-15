@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/book', 'App\Http\Controllers\BookController@index');
+//Route::get('/book', 'App\Http\Controllers\BookController@index');
+
+Route::get('/', 'App\Http\Controllers\User\HomeController@index');
+
+Route::get('/new', 'App\Http\Controllers\User\newController@new');

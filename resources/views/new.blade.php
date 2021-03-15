@@ -9,13 +9,17 @@
 
 @include('layout.header')
 
-@section('h2','TOPページ')
+@section('h2','新規登録ページ')
 @section('content')
-    <p>このページはインデックスページでござんす</p>
-    @foreach ($article_list as $val)
-        <p>{{$val->id}}:{{$val->title}}<br></p>
+    <p>{{ $hello }}</p>
+    @foreach($hello_array as $hello_word)
+        {{ $hello_word }}<br>
     @endforeach
 
+    <p>一つ選択します：{{ $selectOne }}</p>>
+
+    <p><img src="{{asset('/assets/img/img.png')}}" width="100" alt="画像"></p>
+    <a href="{{url('/')}}">トップページへ戻る</a>
 @endsection
 
 @include('layout.submenu')
