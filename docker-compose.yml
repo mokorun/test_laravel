@@ -44,7 +44,7 @@ services:
     image: mysql:latest
     ports:
       - 3306:3306
-    #    hostname: local.sfuto
+    #    hostname: local.me
     environment:
       MYSQL_DATABASE: test_db
       MYSQL_USER: docker
